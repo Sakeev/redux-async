@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddForm from "./components/AddForm/AddForm";
+import Details from "./components/Details/Details";
+import EditForm from "./components/EditForm/EditForm";
 import UsersList from "./components/UsersList/UsersList";
 
 const App = () => {
@@ -17,6 +19,8 @@ const App = () => {
             </>
           }
         />
+        <Route path="/edit/:id" element={<EditForm />} />
+        <Route path="/details/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>
   );

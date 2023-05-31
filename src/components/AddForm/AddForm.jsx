@@ -21,6 +21,7 @@ const AddForm = () => {
     }
 
     dispatch(addUser(newUser));
+
     setName("");
     setSurname("");
     setAge("");

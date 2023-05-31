@@ -8,7 +8,30 @@ export const getUsers = createAsyncThunk("@users/getUsers", async () => {
   return data.data;
 });
 
-export const addUser = createAsyncThunk("@users/addUser", async (newUser) => {
-  await axios.post(API, newUser);
-  return newUser;
+export const addUser = createAsyncThunk(
+  "@users/addUser",
+  async (newUser, { dispatch }) => {
+    await axios.post(API, newUser);
+    dispatch(getUsers());
+    return newUser;
+  }
+);
+
+export const deleteUser = createAsyncThunk("@users/deleteUser", async (id) => {
+  await axios.delete(`${API}/${id}`);
+  return id;
 });
+
+export const getOneUser = createAsyncThunk("@users/getOneUser", async (id) => {
+  const data = await axios.get(`${API}/${id}`);
+  return data.data;
+});
+
+export const editUser = createAsyncThunk(
+  "@users/editUser",
+  async (editedUser, { dispatch }) => {
+    await axios.patch(`${API}/${editedUser.id}`, editedUser);
+    dispatch(getUsers());
+    return editedUser;
+  }
+);
