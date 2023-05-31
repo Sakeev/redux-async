@@ -5,6 +5,10 @@ const API = "http://localhost:8000/users";
 
 export const getUsers = createAsyncThunk("@users/getUsers", async () => {
   const data = await axios.get(API);
-  console.log(data);
-  return data;
+  return data.data;
+});
+
+export const addUser = createAsyncThunk("@users/addUser", async (newUser) => {
+  await axios.post(API, newUser);
+  return newUser;
 });
